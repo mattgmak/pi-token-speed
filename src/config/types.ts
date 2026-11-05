@@ -49,6 +49,7 @@ interface TokenSpeedConfigFields {
   countStrategy: CountStrategy;
   endTpsBehavior: EndTpsBehavior;
   icon: string;
+  label: string;
   updateInterval: number; // ms, 0 = update on every delta
   formatDuration: boolean;
   thresholds: Thresholds;

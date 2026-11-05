@@ -15,6 +15,7 @@ const configRef: { current: TokenSpeedConfig } = {
     countStrategy: "direct",
     endTpsBehavior: "average",
     icon: "⚡",
+    label: "TPS:",
     updateInterval: 0,
     formatDuration: false,
     thresholds: { slow: 10, medium: 30, fast: 60, blazing: 100 },
@@ -116,6 +117,7 @@ describe("Renderer", () => {
       countStrategy: "direct",
       endTpsBehavior: "average",
       icon: "⚡",
+      label: "TPS:",
       updateInterval: 0,
       formatDuration: false,
       thresholds: { slow: 10, medium: 30, fast: 60, blazing: 100 },
@@ -208,6 +210,45 @@ describe("Renderer", () => {
       expect(setStatusSpy).toHaveBeenCalledWith(
         STATUS_KEY,
         expect.not.stringContaining("🚀"),
+      );
+    });
+
+    it("renders icon and label together", () => {
+      const setStatusSpy = vi.spyOn(ctx.ui, "setStatus");
+      engine["_tps"] = 42.5;
+
+      (renderer as any).render(ctx);
+
+      expect(setStatusSpy).toHaveBeenCalledWith(
+        STATUS_KEY,
+        expect.stringContaining("⚡ TPS:"),
+      );
+    });
+
+    it("renders the icon alone when the label is empty", () => {
+      const setStatusSpy = vi.spyOn(ctx.ui, "setStatus");
+      configRef.current = makeConfig({ icon: "⚡", label: "" });
+      renderer = new Renderer(engine, settings as any);
+      engine["_tps"] = 42.5;
+
+      (renderer as any).render(ctx);
+
+      const text = setStatusSpy.mock.calls[0][1] as string;
+      expect(text.startsWith("⚡ ")).toBe(true);
+      expect(text).not.toContain("TPS:");
+    });
+
+    it("renders a custom label", () => {
+      const setStatusSpy = vi.spyOn(ctx.ui, "setStatus");
+      configRef.current = makeConfig({ icon: "🚀", label: "SPD:" });
+      renderer = new Renderer(engine, settings as any);
+      engine["_tps"] = 42.5;
+
+      (renderer as any).render(ctx);
+
+      expect(setStatusSpy).toHaveBeenCalledWith(
+        STATUS_KEY,
+        expect.stringContaining("🚀 SPD:"),
       );
     });
 
@@ -433,6 +474,7 @@ describe("Renderer", () => {
         countStrategy: "direct",
         endTpsBehavior: "average",
         icon: "⚡",
+        label: "TPS:",
         updateInterval: 0,
         formatDuration: false,
         thresholds: { slow: 10, medium: 30, fast: 60, blazing: 100 },

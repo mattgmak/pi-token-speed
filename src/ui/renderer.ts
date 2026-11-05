@@ -58,6 +58,19 @@ export class Renderer {
   }
 
   /**
+   * Joins the icon and the label into the status prefix.
+   *
+   * Empty parts drop out: `icon: "⚡", label: ""` renders `⚡`, and both
+   * empty renders nothing.
+   *
+   * @param config The resolved configuration.
+   * @returns The prefix text, or an empty string when both parts are empty.
+   */
+  private buildHead(config: TokenSpeedConfig): string {
+    return [config.icon, config.label].filter(Boolean).join(" ");
+  }
+
+  /**
    * Renders the status bar update without throttling.
    *
    * @param ctx The context used by Pi.
@@ -79,9 +92,10 @@ export class Renderer {
       displayColors: config.displayColors,
     });
 
-    const icon = config.icon ? `${config.icon} ` : "";
-    const prefix = theme.fg("dim", `${icon}TPS:`);
-    const text = `${prefix} ${displayValue}${suffix}`;
+    const head = this.buildHead(config);
+    const text = head
+      ? `${theme.fg("dim", head)} ${displayValue}${suffix}`
+      : `${displayValue}${suffix}`;
 
     ctx.ui.setStatus(STATUS_KEY, text);
   }
@@ -225,9 +239,8 @@ export class Renderer {
   initialize(ctx: ExtensionContext): void {
     const theme = ctx.ui.theme;
     const config = this.settings.resolveConfig(ctx.model?.provider);
-    const icon = config.icon ? `${config.icon} ` : "";
-    const prefix = theme.fg("dim", `${icon}TPS:`);
-    const text = `${prefix} --`;
+    const head = this.buildHead(config);
+    const text = head ? `${theme.fg("dim", head)} --` : "--";
     ctx.ui.setStatus(STATUS_KEY, text);
   }
 

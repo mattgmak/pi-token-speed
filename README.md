@@ -138,6 +138,7 @@ Invalid configuration values are automatically corrected to their defaults. A wa
 | `countStrategy`      | `estimate`, `direct`           | `direct`    | Token counting strategy used by the extension's own counter                                       |
 | `endTpsBehavior`     | `average`, `last`              | `average`   | What to show after streaming ends                                                                 |
 | `icon`               | string                         | `"⚡"`      | Icon shown before TPS in the status bar                                                           |
+| `label`              | string                         | `"TPS:"`    | Text shown after the icon (empty renders the icon alone)                                           |
 | `updateInterval`     | number                         | `0`         | Status bar update interval in ms (0 = every delta)                                                |
 | `formatDuration`     | boolean                        | `false`     | Show elapsed time in human-readable units (see [Duration Formatting](#duration-formatting))       |
 | `displayColors`      | object                         | `{}`        | Hex colors for the suffix parts (see [Display Color Customization](#display-color-customization)) |
@@ -149,6 +150,7 @@ A small interactive menu is available when running `/tps` in the editor, where y
 
 - **Display mode** — what to show in the status bar
 - **Status icon** — choose the icon shown before TPS (`⚡`, `🔥`, `💨`, `🚀`, or none)
+- **Status label** — the text after the icon (`TPS:`, or empty for icon only)
 - **Status update interval** — throttle status bar updates (see [Status Update Interval](#status-update-interval))
 - **Use provider tokens** — use provider-reported counts instead of the extension's counter
 - **Count strategy** — how the extension counts tokens (`estimate` or `direct`)
