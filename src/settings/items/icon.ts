@@ -2,9 +2,9 @@ import type { TokenSpeedConfig } from "../../config/types";
 import { ValidationCheckResult, ValidationResult } from "../base";
 import { ScalarSettingsItem } from "./scalar";
 
-export const DEFAULT_ICON = "⚡";
+export const DEFAULT_ICON = "⚡\uFE0E";
 
-const ICONS = ["⚡", "🔥", "💨", "🚀", ""] as const;
+const ICONS = ["⚡\uFE0E", "🔥", "💨", "🚀", ""] as const;
 
 /**
  * String setting with special normalization: "(empty)" → "".
