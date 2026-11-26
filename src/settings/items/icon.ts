@@ -2,9 +2,9 @@ import type { TokenSpeedConfig } from "../../config/types";
 import { ValidationCheckResult, ValidationResult } from "../base";
 import { ScalarSettingsItem } from "./scalar";
 
-export const DEFAULT_ICON = "⚡\uFE0E";
+export const DEFAULT_ICON = "\u{F04C5}"; // nf-md-speedometer
 
-const ICONS = ["⚡\uFE0E", "🔥", "💨", "🚀", ""] as const;
+const ICONS = ["\u{F04C5}", "⚡\uFE0E", "🔥", "💨", "🚀", ""] as const;
 
 /**
  * String setting with special normalization: "(empty)" → "".

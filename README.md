@@ -59,7 +59,7 @@ You can customize the display, speed thresholds and colors by adding a `tokenSpe
     "useProviderTokens": false,
     "countStrategy": "direct",
     "endTpsBehavior": "average",
-    "icon": "⚡",
+    "icon": "󰓅",
     "slidingWindow": 1000,
     "updateInterval": 0,
     "formatDuration": false
@@ -137,7 +137,7 @@ Invalid configuration values are automatically corrected to their defaults. A wa
 | `useProviderTokens`  | boolean                        | `false`     | Opt-in: use provider-reported count instead of the extension one                                  |
 | `countStrategy`      | `estimate`, `direct`           | `direct`    | Token counting strategy used by the extension's own counter                                       |
 | `endTpsBehavior`     | `average`, `last`              | `average`   | What to show after streaming ends                                                                 |
-| `icon`               | string                         | `"⚡"`      | Icon shown before TPS in the status bar                                                           |
+| `icon`               | string                         | `"󰓅"`      | Icon shown before TPS in the status bar                                                           |
 | `label`              | string                         | `"TPS:"`    | Text shown after the icon (empty renders the icon alone)                                           |
 | `updateInterval`     | number                         | `0`         | Status bar update interval in ms (0 = every delta)                                                |
 | `formatDuration`     | boolean                        | `false`     | Show elapsed time in human-readable units (see [Duration Formatting](#duration-formatting))       |
@@ -149,7 +149,7 @@ Invalid configuration values are automatically corrected to their defaults. A wa
 A small interactive menu is available when running `/tps` in the editor, where you can adjust:
 
 - **Display mode** — what to show in the status bar
-- **Status icon** — choose the icon shown before TPS (`⚡`, `🔥`, `💨`, `🚀`, or none)
+- **Status icon** — choose the icon shown before TPS (`󰓅`, `⚡`, `🔥`, `💨`, `🚀`, or none)
 - **Status label** — the text after the icon (`TPS:`, or empty for icon only)
 - **Status update interval** — throttle status bar updates (see [Status Update Interval](#status-update-interval))
 - **Use provider tokens** — use provider-reported counts instead of the extension's counter
@@ -360,7 +360,7 @@ TPS: 25.0 tok/s
 
 ### Custom icons
 
-The `/tps` command offers `⚡`, `🔥`, `💨`, `🚀` and none. You can also set any custom icon directly in your `settings.json`:
+The `/tps` command offers `󰓅`, `⚡`, `🔥`, `💨`, `🚀` and none. You can also set any custom icon directly in your `settings.json`:
 
 ```json
 {
